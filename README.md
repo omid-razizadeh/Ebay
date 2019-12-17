@@ -13,11 +13,11 @@ There are different ways to extract information from webpages:
 
     For this we need to know a little bit of css or xpath and the structure of scrapy library in python.
 
-    In xpath:
+  In xpath:
 
     @ represents "attribute"
 
-    examples:
+ examples:
 
     @class
 
@@ -25,7 +25,7 @@ There are different ways to extract information from webpages:
 
     @href
 
-    Some examples:
+Some examples:
 
 Xpath and CSS equivalency:
 
