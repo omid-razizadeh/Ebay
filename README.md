@@ -33,7 +33,9 @@ css = 'html > body div > p:nth-of-type(2)'
 
 
 Now, We can jump a little bit in more details:
+
 ::attr(attr-name)
+
 css_locator = 'div#uid > a::attr(href)'
 
 **Text extraction(::text)**
