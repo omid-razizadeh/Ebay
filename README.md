@@ -25,7 +25,7 @@ examples:
 
 Some examples:
 
-Xpath and CSS equivalency:
+**Xpath and CSS equivalency:**
 
 xpath = '/html/body//div/p[2]'
 
