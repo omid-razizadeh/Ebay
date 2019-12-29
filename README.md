@@ -48,7 +48,7 @@ Now for Scraping we need to know one more thing response:
 
 product_name = response.css('h3.s-item__title::text').extract()
 
-**In my project, I wanted to extract information of product name and product price. I extracted the information by something like this: **
+**In my project, I wanted to extract information of product name and product price. I extracted the information by something like this:**
 
 ```python
         product_name = response.css('h3.s-item__title::text').extract()
