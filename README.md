@@ -1,4 +1,4 @@
-# Amazon
+# ebay
 DP
 
 There are different ways to extract information from webpages:
@@ -51,14 +51,14 @@ product_name = response.css('h3.s-item__title::text').extract()
 **In my project, I wanted to extract information of product name and product price. I extracted the information by something like this: **
 
 ```python
-product_name = response.css('span.a-size-base-plus.a-color-base.a-text-normal::text').extract()
-        product_price1 = response.css('span.a-price > span.a-offscreen').css('::text').extract()
+        product_name = response.css('h3.s-item__title::text').extract()
+        product_price1 = response.css('.s-item__price::text').extract()
 ```
 
 Then after scraping, I needed to post-process my data as It had some syntax. To remove it I used regular expressions:
 
 ```python
-product_price = list(filter(('price').__ne__, product_price1))
+product_price = [re.sub('\xa0', '', fname) for fname in product_price1]
 ```
 
 **Structure of scrapy:**
@@ -70,7 +70,7 @@ class AmazonSpiderSpider(scrapy.Spider):
     name = 'amazon'
     page_number = 3
     start_urls = [
-        'https://www.amazon.com/s?rh=n%3A16310101%2Cn%3A%2116310211%2Cn%3A16310231%2Cn%3A16521305011%2Cn%3A16318401%2Cn%3A16318511&page=2&qid=1576118084&ref=lp_16318511_pg_2'
+        'https://ru.ebay.com/b/Iced-Teas/38181/bn_7115588208'
     ]
 ```
 
@@ -95,7 +95,7 @@ https://github.com/hyan15/scrapy-proxy-pool
 Another problem in web scraping is that our scrapy be able to go to next pages and scrape next page information as well. 
 We can do this by defining something like this:
 ```python
-next_page = 'https://www.amazon.com/s?i=grocery&rh=n%3A16310101%2Cn%3A16310211%2Cn%3A16310231%2Cn%3A16521305011%2Cn%3A16318401%2Cn%3A16318511&page=' + str(AmazonSpiderSpider.page_number) + '&qid=1576114939&ref=sr_pg_2'
+next_page = 'https://ru.ebay.com/b/Iced-Teas/38181/bn_7115588208?_pgn='+ str(AmazonSpiderSpider.page_number)
         if AmazonSpiderSpider.page_number <= 8:
             AmazonSpiderSpider.page_number += 1
             yield response.follow(next_page, callback= self.parse)
